@@ -3,6 +3,7 @@ package org.example;
 import jakarta.persistence.EntityManager;
 import org.example.config.Factory;
 import org.example.model.Student;
+import org.example.model.UserCredential;
 import org.example.repo.StudentRepo;
 import org.example.utils.Gender;
 import org.example.utils.GenerateDate;
@@ -13,16 +14,25 @@ public class App {
     static EntityManager entityManager = Factory.start();
     static StudentRepo studentRepo = new StudentRepo(entityManager);
     public static void main(String[] args) {
-//        Student student = new Student();
-//        student.setFirstName("Ahmad");
-//        student.setLastName("Muzaki");
-//        student.setAddress("Sukabumi");
-//        student.setMajor("Teknik");
-//        student.setGender(Gender.MALE);
-//        student.setBirthDate(GenerateDate.generate("2000-04-02"));
-//        insert(student);
+        UserCredential userCredential = new UserCredential();
+        userCredential.setEmail("musulton1@outlook.com");
+        userCredential.setPassword("password");
 
-        getAll(1, 4);
+        Student student = new Student();
+        student.setStudentId("02f45051-d076-40d3-b751-91af86296178");
+        student.setFirstName("Moch");
+        student.setLastName("Sulton");
+        student.setAddress("Jakarta Timur");
+        student.setMajor("Informatika");
+        student.setGender(Gender.MALE);
+        student.setBirthDate(GenerateDate.generate("1995-04-25"));
+
+        student.setUserCredential(userCredential);
+        userCredential.setStudent(student);
+
+        update(student);
+
+//        getAll(1, 4);
 //        getById("c324e061-7019-49e4-9b12-849de3b98a43");
 
 //        Student student = new Student();

@@ -39,6 +39,18 @@ public class Student {
     @Column(name = "major", nullable = false)
     private String major;
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "credential_email")
+    private UserCredential userCredential;
+
+    public UserCredential getUserCredential() {
+        return userCredential;
+    }
+
+    public void setUserCredential(UserCredential userCredential) {
+        this.userCredential = userCredential;
+    }
+
     public String getStudentId() {
         return studentId;
     }
@@ -105,6 +117,7 @@ public class Student {
                 ", address='" + address + '\'' +
                 ", gender=" + gender +
                 ", major='" + major + '\'' +
+                ", userCredential=" + userCredential +
                 '}';
     }
 }

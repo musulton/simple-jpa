@@ -1,15 +1,13 @@
 package org.example.repo;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.example.model.Student;
 
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class StudentRepo implements IStudentRepo {
+public class StudentRepo implements IRepo<Student> {
     EntityManager entityManager;
 
     public StudentRepo(EntityManager entityManager) {
