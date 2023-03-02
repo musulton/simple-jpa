@@ -7,22 +7,9 @@ import org.example.model.Student;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class StudentRepo implements IRepo<Student> {
-    EntityManager entityManager;
-
-    public StudentRepo(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
-    private void inTransaction(Consumer<EntityManager> consumer) {
-        try {
-            entityManager.getTransaction().begin();
-            consumer.accept(entityManager);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            entityManager.getTransaction().rollback();
-        }
+public class StudentRepo extends ARepo implements IRepo<Student> {
+    public StudentRepo(EntityManager entityManager){
+        super(entityManager);
     }
 
     @Override

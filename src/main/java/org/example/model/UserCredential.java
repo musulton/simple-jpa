@@ -1,7 +1,6 @@
 package org.example.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "user_credential")
@@ -45,7 +44,6 @@ public class UserCredential {
         return "UserCredential{" +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", student=" + student +
                 '}';
     }
 }
