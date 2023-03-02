@@ -4,10 +4,10 @@ import jakarta.persistence.EntityManager;
 
 import java.util.function.Consumer;
 
-public abstract class ARepo {
+public class Repo {
     EntityManager entityManager;
 
-    public ARepo(EntityManager entityManager) {
+    public Repo(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

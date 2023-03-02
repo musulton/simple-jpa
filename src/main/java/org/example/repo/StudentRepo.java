@@ -5,9 +5,8 @@ import jakarta.persistence.TypedQuery;
 import org.example.model.Student;
 
 import java.util.List;
-import java.util.function.Consumer;
 
-public class StudentRepo extends ARepo implements IRepo<Student> {
+public class StudentRepo extends Repo implements IRepo<Student> {
     public StudentRepo(EntityManager entityManager){
         super(entityManager);
     }

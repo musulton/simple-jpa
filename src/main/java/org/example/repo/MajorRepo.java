@@ -6,7 +6,7 @@ import org.example.model.Major;
 
 import java.util.List;
 
-public class MajorRepo extends ARepo implements IRepo<Major>{
+public class MajorRepo extends Repo implements IRepo<Major>{
     public MajorRepo(EntityManager entityManager) {
         super(entityManager);
     }

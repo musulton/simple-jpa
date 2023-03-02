@@ -2,9 +2,11 @@ package org.example;
 
 import jakarta.persistence.EntityManager;
 import org.example.config.Factory;
+import org.example.model.Club;
 import org.example.model.Major;
 import org.example.model.Student;
 import org.example.model.UserCredential;
+import org.example.repo.ClubRepo;
 import org.example.repo.MajorRepo;
 import org.example.repo.StudentRepo;
 import org.example.service.MajorService;
@@ -19,12 +21,36 @@ public class App {
 
     static MajorRepo majorRepo = new MajorRepo(entityManager);
     static StudentRepo studentRepo = new StudentRepo(entityManager);
-    static MajorService majorService = new MajorService(majorRepo);
+    static ClubRepo clubRepo = new ClubRepo(entityManager);
 
+    static MajorService majorService = new MajorService(majorRepo);
     static StudentService studentService = new StudentService(studentRepo, majorService);
 
     public static void main(String[] args) {
+//        Club voli = new Club();
+//        voli.setClubName("Voli");
+//        clubRepo.create(voli);
 
+        UserCredential userCredential = new UserCredential();
+        userCredential.setEmail("test@email.com");
+        userCredential.setPassword("123456");
+
+        Student student = new Student();
+        student.setFirstName("First");
+        student.setLastName("Last");
+        student.setGender(Gender.FEMALE);
+        student.setBirthDate(GenerateDate.generate("2002-01-21"));
+        student.setAddress("Jakarta");
+
+        Club futsal = clubRepo.findOne("0fa21921-c0a8-4602-89d0-68de4baeac8b");
+        Club voli = clubRepo.findOne("1a1a53a0-1fb1-4f23-be2c-96a1d64d4e8c");
+
+        student.setClub(futsal);
+        student.setClub(voli);
+
+        futsal.setStudents(student);
+
+        studentService.insert(student, userCredential, "1ebaad5c-a564-4fa0-83a1-405e24eaee8e");
     }
 
     static void insertStudentUser() {

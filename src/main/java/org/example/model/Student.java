@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import org.example.utils.Gender;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -43,6 +45,22 @@ public class Student {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "credential_email")
     private UserCredential userCredential;
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_club",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "club_id")
+    )
+    private List<Club> clubs = new ArrayList<>();
+
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClub(Club club) {
+        this.clubs.add(club);
+    }
 
     public UserCredential getUserCredential() {
         return userCredential;

@@ -17,6 +17,7 @@ public class StudentService implements IService<Student>{
     }
 
     public void insert(Student student, UserCredential userCredential, String majorId) {
+        System.out.println(student);
         Major major = majorService.getById(majorId);
         student.setUserCredential(userCredential);
         student.setMajor(major);
